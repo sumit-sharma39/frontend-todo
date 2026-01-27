@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Edit.css"
+
 export function EditTask() {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const { id } = useParams();
     const navigate = useNavigate();
     const [original, setOriginal] = useState(null);
@@ -14,7 +16,8 @@ export function EditTask() {
     useEffect(() => {
         async function fetchTask() {
         try {
-            const res = await axios.get(`http://localhost:8000/Task/${id}`);
+            // const res = await axios.get(`http://localhost:8000/Task/${id}`);
+            const res = await axios.get(`${backendUrl}/Task/${id}`);
             const task = res.data.data[0];
 
             setOriginal(task);
@@ -29,7 +32,7 @@ export function EditTask() {
         }
         }
         fetchTask();
-    }, [id]);
+    }, [id , backendUrl]);
 
     const saveEdits = async () => {
         if (!original) return;
@@ -62,7 +65,8 @@ export function EditTask() {
         }
 
         try {
-        await axios.patch(`http://localhost:8000/UpdateTask/${id}`, payload);
+        // await axios.patch(`http://localhost:8000/UpdateTask/${id}`, payload);
+        await axios.patch(`${backendUrl}/UpdateTask/${id}`, payload);
         navigate(`/Task/${id}`);
         } catch (err) {
         console.error(err);

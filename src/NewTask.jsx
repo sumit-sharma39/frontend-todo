@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 export function NewTask({ setTasks }){
 
+    const backendUrl = import.meta.env.VITE_BACKEND_URL; //backend server link 
+
     const [title , setTitle] = useState("");
     const [description , setDescription] = useState("");
     const [bullet , setbullet] = useState("");
@@ -15,7 +17,8 @@ export function NewTask({ setTasks }){
 
     async function save() {
         try {
-            const result =await axios.post("http://localhost:8000/Add", 
+            // const result =await axios.post("http://localhost:8000/Add",
+            const result =await axios.post(`${backendUrl}/Add`, 
                 {
                     title , description, Points, date , completed:false
                 });
@@ -32,7 +35,8 @@ export function NewTask({ setTasks }){
             console.log("check the image" , image);
 
             const Response = await axios.post(
-                `http://localhost:8000/UploadImage/${savedTask.id}`,
+                `${backendUrl}/UploadImage/${savedTask.id}`,
+                // `http://localhost:8000/UploadImage/${savedTask.id}`,
                 formData
             );
             console.log("formData is: " , formData);

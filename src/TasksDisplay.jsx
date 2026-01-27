@@ -7,26 +7,26 @@ import { Dashboard } from "./dashboard";
 export function TasksDisplay() {
     const [tasks, setTasks] = useState([]);
     const navigate = useNavigate();
-
+    const backendUrl = import.meta.env.VITE_BACKEND_URL; //backend server link 
     // gets tasks
     useEffect(() => {
         async function getData() {
         try {
-            const res = await axios.get(`http://localhost:8000/data`);
+            const res = await axios.get(`${backendUrl}/data`);
             setTasks(res.data.data);
         } catch (err) {
             console.error("Fetch error:", err);
         }
         }
         getData();
-    }, []);
+    }, [ backendUrl]);
 
     // delete task
     const deleteTask = async (id) => {
         if (!window.confirm("Delete this task?")) return;
 
         try {
-        await axios.delete(`http://localhost:8000/delete`,{data: { ids: [id] }});
+        await axios.delete(`${backendUrl}/Delete`,{data: { ids: [id] }});
         setTasks((prev) => prev.filter((task) => task.id !== id));
         } catch (err) {
         console.error("Delete error:", err);

@@ -4,6 +4,9 @@ import axios from "axios";
 import "./Display.css";
 
 export function TaskDisplay() {
+
+    const backendUrl = import.meta.env.VITE_BACKEND_URL; //backend server link 
+
     const { id } = useParams();
     const [task, setTask] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,7 +15,8 @@ export function TaskDisplay() {
     useEffect(() => {
         const fetchTask = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/Task/${id}`);
+            // const res = await axios.get(`http://localhost:8000/Task/${id}`);
+            const res = await axios.get(`${backendUrl}/Task/${id}`);
             setTask(res.data.data[0]);
             console.log("Data received: " , res.data);
             setLoading(false);
@@ -24,11 +28,11 @@ export function TaskDisplay() {
         };
 
         fetchTask();
-    }, [id]);
+    }, [id , backendUrl]);
 
             const markAsCompleted = async () => {
         try {
-            await axios.put(`http://localhost:8000/Completed/${id}`);
+            await axios.put(`${backendUrl}/Completed/${id}`);
 
             setTask((prev) =>
             prev ? { ...prev, completed: true } : prev
