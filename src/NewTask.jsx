@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 export function NewTask({ setTasks }){
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL; //backend server link 
+
 
     const [title , setTitle] = useState("");
     const [description , setDescription] = useState("");

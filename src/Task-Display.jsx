@@ -78,7 +78,7 @@ export function TaskDisplay() {
         {task.image_url && task.image_url.length > 0 && (
         <div className="task-images">
             {task.image_url && (
-                <img src={task.image_url} alt="task" width={500} />
+                <img src={task.image_url} alt="task" width={400} />
             )}
         </div>
         )}
