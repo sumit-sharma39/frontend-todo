@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+.Div-add {
+  width: 100%;
+  max-width: 480px;
+  background-color: rgb(111, 104, 104);
+  color: white;
+  padding: 28px;
+  border-radius: 18px;
+  margin: 80px auto;
+  box-sizing: border-box;
+}
+
+.Div-add h5 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.Div-add p {
+  margin: 14px 0 6px;
+}
+
+.Div-add input[type="text"],
+.Div-add input[type="date"],
+.Div-add input[type="file"],
+.Div-add input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  box-sizing: border-box;
+}
+
+.Div-add button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+  background-color: grey;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: lightgrey;
+}

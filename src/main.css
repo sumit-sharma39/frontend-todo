@@ -1,0 +1,53 @@
+body {
+    background-color: white;
+    margin: 0;
+}
+
+.Dashboard {
+    width: 100%;
+    height: 64px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.Dashboard h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dashboard-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 14px;
+}
+
+.edit-btn {
+    background-color: rgb(111, 106, 106);
+    padding: 8px 18px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    color: #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+}
+
+.edit-btn:hover {
+    background-color: lightgrey;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn:active {
+    transform: scale(0.97);
+}
