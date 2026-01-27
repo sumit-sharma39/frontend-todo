@@ -5,7 +5,7 @@ import "./Display.css";
 
 export function TaskDisplay() {
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL; //backend server link 
+    
 
     const { id } = useParams();
     const [task, setTask] = useState(null);
@@ -16,7 +16,7 @@ export function TaskDisplay() {
         const fetchTask = async () => {
         try {
             // const res = await axios.get(`http://localhost:8000/Task/${id}`);
-            const res = await axios.get(`${backendUrl}/Task/${id}`);
+            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`);
             setTask(res.data.data[0]);
             console.log("Data received: " , res.data);
             setLoading(false);
@@ -28,11 +28,11 @@ export function TaskDisplay() {
         };
 
         fetchTask();
-    }, [id , backendUrl]);
+    }, [id ]);
 
             const markAsCompleted = async () => {
         try {
-            await axios.put(`${backendUrl}/Completed/${id}`);
+            await axios.put(`https://backend-todo-1-z9rj.onrender.com/Completed/${id}`);
 
             setTask((prev) =>
             prev ? { ...prev, completed: true } : prev
