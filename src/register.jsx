@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 import { GoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,11 +9,13 @@ export function Register() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const user_id = uuidv4();
 
 
     const savedetails = async (e) => {
         e.preventDefault(); 
-        const payload = { email, password };
+
+        const payload = { user_id , email, password };
         console.log("register payload =", payload);
 
 

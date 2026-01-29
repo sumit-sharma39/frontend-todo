@@ -15,7 +15,7 @@ function App() {
         <Route path="/register" element={ <Register/>} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/" element={<Login/>}/>
-        <Route path='/home' element={<TasksDisplay task={tasks} setTasks={setTasks} />} />
+        <Route path='/home/:id' element={<TasksDisplay task={tasks} setTasks={setTasks} />} />
         <Route path='/Add' element={<NewTask setTasks={setTasks}/>} />
         <Route path="/Task/:id" element={<TaskDisplay />} />
         <Route path="/Edit/:id" element={<EditTask/>} />
