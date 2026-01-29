@@ -10,6 +10,7 @@ export function TasksDisplay() {
 
     const data = JSON.parse(localStorage.getItem("user"));
     const userId = data?.user?.user_id;
+    console.log("user_id display: " , userId);
     // gets tasks
     useEffect(() => {
         async function getData() {
