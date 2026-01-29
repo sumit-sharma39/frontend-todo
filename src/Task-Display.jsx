@@ -50,7 +50,7 @@ export function TaskDisplay() {
 
     return (
         <div className="task-detail-container">
-        <Link to="/">
+        <Link to="/home">
             <button className="back-btn">Back</button>
         </Link>
 

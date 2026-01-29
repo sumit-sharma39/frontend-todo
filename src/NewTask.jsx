@@ -51,7 +51,7 @@ export function NewTask({ setTasks }){
                 { ...savedTask, image: uploadedImage },
             ]);
 
-            navigate("/");
+            navigate("/home");
             } catch (err) {
             console.error("Error saving task:", err);
             }
