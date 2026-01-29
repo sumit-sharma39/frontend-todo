@@ -16,14 +16,14 @@ export function NewTask({ setTasks }){
     const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem("user"));
-    const userId = user?.id;
-
+    const userId = user?.user_id;
+    console.log("user_id: " , userId);
     async function save() {
         try {
             // const result =await axios.post("http://localhost:8000/Add",
             const result =await axios.post(`https://backend-todo-1-z9rj.onrender.com/Add`, 
                 {
-                    title , description, Points, date , completed:false , user_id:userId 
+                    title , description, Points, date , completed:false ,  user_id: userId 
                 });
             console.log("result=", result);
 
@@ -66,7 +66,7 @@ export function NewTask({ setTasks }){
 
     return (
         <>
-            <Link to="/"> <button className="back-btn"> Back </button> </Link>
+            <Link to="/home"> <button className="back-btn"> Back </button> </Link>
             <div className="Div-add">
                 <h5>New task</h5>
 
