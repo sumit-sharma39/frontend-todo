@@ -15,8 +15,7 @@ export function NewTask({ setTasks }){
     const [image , setimage] = useState(null);
     const navigate = useNavigate();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    const userId = user?.user_id;
+    const userId = 
     console.log("user_id: " , userId);
     async function save() {
         try {

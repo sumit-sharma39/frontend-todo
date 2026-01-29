@@ -17,7 +17,7 @@
         try {
         const token = credentialResponse.credential;
         const response = await axios.post(`https://backend-todo-1-z9rj.onrender.com/GoogleLogin`, { token }); //backend link
-
+            console.log(response.data);
         if (response.status === 200) {
             localStorage.setItem("user", JSON.stringify(response.data));
             navigate("/home"); //check the navigation.
