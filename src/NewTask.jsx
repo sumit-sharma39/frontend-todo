@@ -15,12 +15,15 @@ export function NewTask({ setTasks }){
     const [image , setimage] = useState(null);
     const navigate = useNavigate();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user?.id;
+
     async function save() {
         try {
             // const result =await axios.post("http://localhost:8000/Add",
             const result =await axios.post(`https://backend-todo-1-z9rj.onrender.com/Add`, 
                 {
-                    title , description, Points, date , completed:false
+                    title , description, Points, date , completed:false , user_id:userId 
                 });
             console.log("result=", result);
 

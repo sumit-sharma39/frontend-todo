@@ -71,6 +71,9 @@ export function EditTask() {
         console.error(err);
         alert("Update failed");
         }
+
+
+
     };
 
     return (
@@ -98,4 +101,4 @@ export function EditTask() {
     </div>
     );
 
-}
+} 

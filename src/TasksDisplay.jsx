@@ -7,18 +7,21 @@ import { Dashboard } from "./dashboard";
 export function TasksDisplay() {
     const [tasks, setTasks] = useState([]);
     const navigate = useNavigate();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user?.id;
     // gets tasks
     useEffect(() => {
         async function getData() {
         try {
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/data`);
+            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/data/${userId}`);
             setTasks(res.data.data);
         } catch (err) {
             console.error("Fetch error:", err);
         }
         }
         getData();
-    }, []);
+    }, [userId]);
 
     // delete task
     const deleteTask = async (id) => {
