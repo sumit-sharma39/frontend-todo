@@ -10,10 +10,6 @@ export function Dashboard() {
                 <Link to="/Add" className="edit-btn link-add">
                     Add
                 </Link>
-            </div>
-
-            <div className="dashboard-buttons">
-                
                 <Link to="/" className="edit-btn link-add">
                     logout
                 </Link>
