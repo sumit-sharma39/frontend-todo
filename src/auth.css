@@ -1,195 +1,190 @@
-/* index.css */
-
-/* ----------------- Body & Global ----------------- */
+/* ----------------- Global ----------------- */
 body {
-    background-color: #f7f8fa;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
 /* ----------------- Dashboard ----------------- */
 .Dashboard {
-    width: 100%;
-    height: 64px;
-    background-color: #4f46e5; /* Indigo */
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 64px;
+  background-color: rgb(111, 104, 104);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Fix spacing between buttons */
+  padding: 0 24px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .Dashboard h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
 }
 
 .dashboard-buttons {
-    margin-left: auto;
-    display: flex;
-    gap: 14px;
+  display: flex;
+  gap: 12px;
 }
 
 .edit-btn {
-    background-color: #e0e0e0;
-    padding: 8px 18px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    color: #000;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease,
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
+  background-color: #888;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .edit-btn:hover {
-    background-color: #d1d5db;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: #aaa;
+  transform: translateY(-1px);
 }
 
 .edit-btn:active {
-    transform: scale(0.97);
+  transform: scale(0.97);
 }
 
-.link-add {
-    background-color: #10b981; /* green */
-    color: #fff;
-}
-
-.link-add:hover {
-    background-color: #059669;
-}
-
-.logout-btn {
-    background-color: #ef4444; /* red */
-    color: #fff;
-}
-
-.logout-btn:hover {
-    background-color: #b91c1c;
-}
-
-/* ----------------- Forms (Login & Register) ----------------- */
+/* ----------------- Forms (Register & Login) ----------------- */
 .register-container,
-.login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 32px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+.login-container,
+.Div-add {
+  width: 100%;
+  max-width: 480px;
+  background-color: rgb(111, 104, 104);
+  color: white;
+  padding: 28px;
+  border-radius: 18px;
+  margin: 80px auto;
+  box-sizing: border-box;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .register-form,
 .login-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .register-title,
-.login-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 24px;
-    color: #4f46e5;
-    text-align: center;
+.login-title,
+.Div-add h5 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
 .register-label,
-.login-label {
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #333;
+.login-label,
+.Div-add p {
+  margin: 12px 0 6px;
+  font-weight: 600;
 }
 
 .register-input,
-.login-input {
-    padding: 10px 12px;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.2s ease;
+.login-input,
+.Div-add input[type="text"],
+.Div-add input[type="date"],
+.Div-add input[type="file"],
+.Div-add input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  box-sizing: border-box;
+  margin-bottom: 12px;
 }
 
-.register-input:focus,
-.login-input:focus {
-    border-color: #4f46e5;
+.register-button,
+.login-button,
+.Div-add button,
+.back-btn {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .register-button,
 .login-button {
-    background-color: #4f46e5;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 0;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
+  background-color: #555;
+  color: white;
+  margin-top: 10px;
 }
 
 .register-button:hover,
 .login-button:hover {
-    background-color: #3730a3;
-    transform: translateY(-1px);
+  background-color: #777;
+  transform: translateY(-1px);
 }
 
-.register-button:active,
-.login-button:active {
-    transform: scale(0.97);
+.Div-add button {
+  background-color: #555;
+  color: white;
 }
 
-/* Google section */
+.Div-add button:hover {
+  background-color: #777;
+  transform: translateY(-1px);
+}
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: grey;
+  color: white;
+}
+
+.back-btn:hover {
+  background-color: lightgrey;
+}
+
+/* ----------------- Google Login Section ----------------- */
 .google-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px 0;
 }
 
 .or-text {
-    margin: 8px 0;
-    font-weight: 600;
-    color: #6b7280;
+  margin: 8px 0;
+  font-weight: 600;
+  color: #e0e0e0;
 }
 
-.register-link {
-    color: #4f46e5;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.register-link:hover {
-    text-decoration: underline;
-}
-
-.login-text {
-    text-align: center;
-    margin-top: 16px;
-    color: #374151;
+.register-link,
+.login-link {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 /* ----------------- Responsive ----------------- */
 @media (max-width: 500px) {
-    .register-container,
-    .login-container {
-        margin: 40px 16px;
-        padding: 24px;
-    }
+  .register-container,
+  .login-container,
+  .Div-add {
+    margin: 40px 16px;
+    padding: 24px;
+  }
 
-    .edit-btn {
-        padding: 6px 14px;
-        font-size: 14px;
-    }
+  .edit-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 }
