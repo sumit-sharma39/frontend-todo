@@ -11,6 +11,14 @@ export function Dashboard() {
                     Add
                 </Link>
             </div>
+
+            <div className="dashboard-buttons">
+                
+                <Link to="/" className="edit-btn link-add">
+                    logout
+                </Link>
+            </div>
+
         </div>
     )
 }
