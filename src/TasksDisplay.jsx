@@ -15,7 +15,7 @@ export function TasksDisplay() {
     useEffect(() => {
         async function getData() {
         try {
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/data/${userId}`);
+            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Data/${userId}`);
             setTasks(res.data.data);
         } catch (err) {
             console.error("Fetch error:", err);
