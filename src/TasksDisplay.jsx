@@ -9,13 +9,13 @@ export function TasksDisplay() {
     const navigate = useNavigate();
 
     const data = JSON.parse(localStorage.getItem("user"));
+    console.log("frontend data: " , data);
     const userId = data?.user?.user_id;
-    console.log("user_id display: " , userId);
+
     // gets tasks
     useEffect(() => {
         async function getData() {
         try {
-            console.log("frontend task display user_id : ",userId);
             const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Data/${userId}`);
             setTasks(res.data.data);
         } catch (err) {
