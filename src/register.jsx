@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { GoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-   import "./auth.css";
+import "./auth.css";
 
 // start  of the function 
 export function Register() {
