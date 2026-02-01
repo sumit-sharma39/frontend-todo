@@ -15,6 +15,7 @@ export function TasksDisplay() {
     useEffect(() => {
         async function getData() {
         try {
+            console.log("frontend task display user_id : ",userId);
             const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Data/${userId}`);
             setTasks(res.data.data);
         } catch (err) {
