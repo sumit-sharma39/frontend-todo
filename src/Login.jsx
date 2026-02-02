@@ -1,74 +1,48 @@
-   import "./auth.css";
-    import { Link, useNavigate } from "react-router-dom";
-    import axios from "axios";
-    import { useState } from "react";
-    import { GoogleLogin } from "@react-oauth/google";
+import "./auth.css";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { GoogleLogin } from "@react-oauth/google";
 
-
-    // start of the function
-    export function Login() {
+export function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    // << -------- function to check login details ------------->>
-    
     const handleGoogleLogin = async (credentialResponse) => {
         try {
         const token = credentialResponse.credential;
-        const response = await axios.post(`https://backend-todo-1-z9rj.onrender.com/GoogleLogin`, { token }); //backend link
-            console.log(response.data);
-        if (response.status === 200) {
-            localStorage.setItem("user", JSON.stringify(response.data));
-            navigate("/home"); //check the navigation.
-        }
-        } catch (err) {
-        console.error("Google login failed", err);
+
+        const r = await axios.post(
+            "https://backend-todo-1-z9rj.onrender.com/GoogleLogin",
+            { token }
+        );
+
+        localStorage.setItem("user", JSON.stringify({ user_id: r.data.user_id }));
+        navigate("/home");
+        } catch {
         alert("Google login failed");
         }
     };
 
     const checkdetails = async (e) => {
-        e.preventDefault();  // checks for default behavior
-
-        const payload = { email, password };
-        console.log("login payload =", payload);
+        e.preventDefault();
 
         try {
-        const r = await axios.post(`https://backend-todo-1-z9rj.onrender.com/Login`, payload);  // Add the server link 
-        console.log("login response =", r);
+        const r = await axios.post(
+            "https://backend-todo-1-z9rj.onrender.com/Login",
+            { email, password }
+        );
 
-            if (r.status === 200) {
-                alert("Login successful");
-                localStorage.setItem("user", JSON.stringify(r.data));
-                navigate("/home");  // add navigation this here 
-                } else {
-                alert("Invalid credentials");
-                }
-        } 
-        
-        catch (error) {  
-        if (error.response) {
-            if (error.response.status === 401) {
-            alert("Invalid email or password");
-            } 
-            else if (error.response.status === 404) {
-            alert("User not found. Please register.");
-            navigate("/register");
-            } else {
-            alert("Login failed");
-            }
-        } 
-        
-        else {
-            alert("Server not reachable");
-            console.error(error);
-        }
+        localStorage.setItem("user", JSON.stringify({ user_id: r.data.user_id }));
+        navigate("/home");
+        } catch (err) {
+        if (err.response?.status === 401) alert("Invalid credentials");
+        else if (err.response?.status === 404) navigate("/register");
+        else alert("Login failed");
         }
     };
 
-
-    // << -------- return statement ------------->>
     return (
         <div className="login-container">
         <form className="login-form" onSubmit={checkdetails}>
@@ -89,29 +63,24 @@
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="login-input"
-
+            required
             />
 
-            <button type="submit" className="login-button">
-            Login
-            </button>
+            <button type="submit" className="login-button">Login</button>
 
-            <div className="google-section"> 
-                <p className="or-text">or</p>
-                    <GoogleLogin
-                        onSuccess={handleGoogleLogin}
-                        onError={() => alert("Google Sign In Failed")}
-                    />
+            <div className="google-section">
+            <p className="or-text">or</p>
+            <GoogleLogin
+                onSuccess={handleGoogleLogin}
+                onError={() => alert("Google Sign In Failed")}
+            />
             </div>
 
             <p className="login-text">
             Don't have an account?
-            <Link to="/Register" className="register-link">
-                {" "}
-                Register
-            </Link>
+            <Link to="/Register" className="register-link"> Register</Link>
             </p>
         </form>
         </div>
     );
-    }
+}

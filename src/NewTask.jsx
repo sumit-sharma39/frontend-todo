@@ -1,123 +1,108 @@
-import "./index.css"
-import { useState } from "react"
+import "./index.css";
+import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-export function NewTask({ setTasks }){
+import { useNavigate, Link } from "react-router-dom";
 
+export function NewTask({ setTasks }) {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [bullet, setBullet] = useState("");
+    const [points, setPoints] = useState([]);
+    const [date, setDate] = useState("");
+    const [image, setImage] = useState(null);
 
-
-    const [title , setTitle] = useState("");
-    const [description , setDescription] = useState("");
-    const [bullet , setbullet] = useState("");
-    const [Points , setPoints] = useState([]);
-    const [date , setdate] = useState("");
-    const [image , setimage] = useState(null);
     const navigate = useNavigate();
 
-    const data = JSON.parse(localStorage.getItem("user"));
-    const userId = data?.user?.user_id;
-    console.log("user_id: " , userId);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const user_id = user?.user_id;
+
     async function save() {
+        if (!user_id) return;
+
         try {
-            // const result =await axios.post("http://localhost:8000/Add",
-            const result =await axios.post(`https://backend-todo-1-z9rj.onrender.com/Add`, 
-                {
-                    title , description, Points, date , completed:false ,  user_id: userId 
-                });
-            console.log("result=", result);
+        const result = await axios.post(
+            "https://backend-todo-1-z9rj.onrender.com/Add",
+            {
+            title,
+            description,
+            points,
+            date,
+            completed: false
+            },
+            {
+            headers: {
+                "user-id": user_id
+            }
+            }
+        );
 
-            const savedTask = result.data;
-            
-            let uploadedImage = [];
-            if (image) {
+        const savedTask = result.data;
+
+        let uploadedImage = [];
+
+        if (image) {
             const formData = new FormData();
-
             formData.append("image_url", image);
-            console.log("savedtask id check: " , savedTask.id);
-            console.log("check the image" , image);
 
-            const Response = await axios.post(
-                `https://backend-todo-1-z9rj.onrender.com/UploadImage/${savedTask.id}`,
-                // `http://localhost:8000/UploadImage/${savedTask.id}`,
-                formData
+            const response = await axios.post(
+            `https://backend-todo-1-z9rj.onrender.com/UploadImage/${savedTask.id}`,
+            formData
             );
-            console.log("formData is: " , formData);
 
-                uploadedImage = Response.data.image || [];
-            }
-            setTasks((prev) => [
-                ...prev,
-                { ...savedTask, image: uploadedImage },
-            ]);
+            uploadedImage = response.data.image || [];
+        }
 
-            navigate("/home");
-            } catch (err) {
-            console.error("Error saving task:", err);
-            }
+        setTasks(prev => [...prev, { ...savedTask, image: uploadedImage }]);
+        navigate("/home");
+        } catch (err) {
+        console.error(err);
+        }
     }
 
-    function AddPoint() {
-        const pt=bullet.trim();
-        if(!pt) return;
-        setPoints( (previous) => [...previous , pt]);
-        setbullet("");
+    function addPoint() {
+        const pt = bullet.trim();
+        if (!pt) return;
+        setPoints(prev => [...prev, pt]);
+        setBullet("");
     }
 
     return (
         <>
-            <Link to="/home"> <button className="back-btn"> Back </button> </Link>
-            <div className="Div-add">
-                <h5>New task</h5>
+        <Link to="/home"><button className="back-btn">Back</button></Link>
 
-                <p>Title:</p> 
-                <input placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)} />
+        <div className="Div-add">
+            <h5>New task</h5>
 
-                <p>description:</p>
-                <input placeholder="Description" value={description} onChange={(event) => setDescription(event.target.value) }/>
+            <p>Title:</p>
+            <input value={title} onChange={e => setTitle(e.target.value)} />
 
-                <p>Tasks:</p>
-                <input placeholder="Point" value={bullet} onChange={(event) => setbullet(event.target.value) }/ > 
-                <button onClick={AddPoint} >Add</button>
+            <p>Description:</p>
+            <input value={description} onChange={e => setDescription(e.target.value)} />
 
-                {Points.length>0 && (<ul>
-                    {Points.map((P, index) => (
-                    <li key={index}>{P}</li>
-                    ))}
-                </ul>
-                )}
+            <p>Tasks:</p>
+            <input value={bullet} onChange={e => setBullet(e.target.value)} />
+            <button onClick={addPoint}>Add</button>
 
-                <p>Deadline</p>
-                <input type="date" min="2026-01-01" value={date} onChange={(event) => setdate(event.target.value) }></input>
+            {points.length > 0 && (
+            <ul>
+                {points.map((p, i) => <li key={i}>{p}</li>)}
+            </ul>
+            )}
 
-                <p>Images:</p>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                        setimage(file);
-                        }
-                    }}
-                />
-                {image && (
-                <div>
-                    <img
-                    src={URL.createObjectURL(image)}
-                    alt="preview"
-                    width={100}
-                    />
-                </div>
-                )}
-                
+            <p>Deadline</p>
+            <input type="date" value={date} onChange={e => setDate(e.target.value)} />
 
-                <br/>
+            <p>Images:</p>
+            <input
+            type="file"
+            accept="image/*"
+            onChange={e => setImage(e.target.files?.[0] || null)}
+            />
 
-                <button type="submit" onClick={save}>Submit</button>
+            {image && <img src={URL.createObjectURL(image)} width={100} />}
 
-            </div>
-
+            <button onClick={save}>Submit</button>
+        </div>
         </>
-    )
+    );
 }

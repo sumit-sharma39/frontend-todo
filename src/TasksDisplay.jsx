@@ -8,9 +8,8 @@ export function TasksDisplay() {
     const [tasks, setTasks] = useState([]);
     const navigate = useNavigate();
 
-    const data = JSON.parse(localStorage.getItem("user"));
-    console.log("frontend data: " , data);
-    const userId = data?.user?.user_id;
+const user = JSON.parse(localStorage.getItem("user"));
+const userId = user?.user_id;
 
     // gets tasks
     useEffect(() => {
