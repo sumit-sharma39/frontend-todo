@@ -20,7 +20,7 @@ export function Register() {
 
         try {
         const r = await axios.post(
-            "http://localhost:8000/Register" , 
+            "https://backend-todo-1-z9rj.onrender.com/Register" , 
             payload ,
             { withCredentials: true }
         );
@@ -43,7 +43,7 @@ export function Register() {
         const token = credentialResponse.credential;
 
         const response = await axios.post(
-            "http://localhost:8000/Gregister",
+            "https://backend-todo-1-z9rj.onrender.com/Gregister",
             { token } ,
             { withCredentials: true }
         );

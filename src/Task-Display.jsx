@@ -15,8 +15,8 @@ export function TaskDisplay() {
     useEffect(() => {
         const fetchTask = async () => {
         try {
-            // const res = await axios.get(`http://localhost:8000/Task/${id}`);
-            const res = await axios.get(`http://localhost:8000/Task/${id}` , 
+            // const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`);
+            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}` , 
             { withCredentials: true });
             setTask(res.data);
             console.log("Data received: " , res.data);
@@ -33,7 +33,7 @@ export function TaskDisplay() {
 
             const markAsCompleted = async () => {
         try {
-            await axios.put(`http://localhost:8000/Completed/${id}`, null, 
+            await axios.put(`https://backend-todo-1-z9rj.onrender.com/Completed/${id}`, null, 
   { withCredentials: true });
 
             setTask((prev) =>

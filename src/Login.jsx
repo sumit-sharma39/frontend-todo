@@ -14,7 +14,7 @@ export function Login() {
         const token = credentialResponse.credential;
 
         const r = await axios.post(
-            "http://localhost:8000/GoogleLogin",
+            "https://backend-todo-1-z9rj.onrender.com/GoogleLogin",
             { token },
             { withCredentials: true }
         );
@@ -31,7 +31,7 @@ export function Login() {
 
         try {
         const r = await axios.post(
-            "http://localhost:8000/Login",
+            "https://backend-todo-1-z9rj.onrender.com/Login",
             { email, password },
             { withCredentials: true }
         );
