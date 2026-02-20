@@ -16,8 +16,9 @@ export function TaskDisplay() {
         const fetchTask = async () => {
         try {
             // const res = await axios.get(`http://localhost:8000/Task/${id}`);
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`);
-            setTask(res.data.data[0]);
+            const res = await axios.get(`http://localhost:8000/Task/${id}` , 
+            { withCredentials: true });
+            setTask(res.data);
             console.log("Data received: " , res.data);
             setLoading(false);
         } catch (err) {
@@ -32,7 +33,8 @@ export function TaskDisplay() {
 
             const markAsCompleted = async () => {
         try {
-            await axios.put(`https://backend-todo-1-z9rj.onrender.com/Completed/${id}`);
+            await axios.put(`http://localhost:8000/Completed/${id}`, null, 
+  { withCredentials: true });
 
             setTask((prev) =>
             prev ? { ...prev, completed: true } : prev

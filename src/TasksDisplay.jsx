@@ -8,28 +8,28 @@ export function TasksDisplay() {
     const [tasks, setTasks] = useState([]);
     const navigate = useNavigate();
 
-const user = JSON.parse(localStorage.getItem("user"));
-const userId = user?.user_id;
 
     // gets tasks
     useEffect(() => {
         async function getData() {
         try {
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Data/${userId}`);
+            const res = await axios.get(`http://localhost:8000/Data`,
+    { withCredentials: true });
             setTasks(res.data.data);
         } catch (err) {
             console.error("Fetch error:", err);
         }
         }
         getData();
-    }, [userId]);
+    }, []);
 
     // delete task
     const deleteTask = async (id) => {
-        if (!window.confirm("Delete this task?")) return;
-
+        console.log("Deleting task with ID:", id);
         try {
-        await axios.delete(`https://backend-todo-1-z9rj.onrender.com/Delete`,{data: { ids: [id] }});
+        await axios.delete(`http://localhost:8000/Delete/${id}`,
+                { withCredentials: true } );
+
         setTasks((prev) => prev.filter((task) => task.id !== id));
         } catch (err) {
         console.error("Delete error:", err);
@@ -39,6 +39,7 @@ const userId = user?.user_id;
     // Edit page. 
     const editTask = (id) => { //(id)
         navigate(`/Edit/${id}`);
+        console.log("Edit task with ID:", id);
     };
 
     const formatDate = (date) => {

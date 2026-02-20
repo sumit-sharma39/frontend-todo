@@ -16,8 +16,10 @@ export function EditTask() {
         async function fetchTask() {
         try {
             // const res = await axios.get(`http://localhost:8000/Task/${id}`);
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`);
-            const task = res.data.data[0];
+            const res = await axios.get(`http://localhost:8000/Task/${id}`,
+            { withCredentials: true }
+        );
+            const task = res.data;
 
             setOriginal(task);
             setTitle(task.title || "");
@@ -65,7 +67,9 @@ export function EditTask() {
 
         try {
         // await axios.patch(`http://localhost:8000/UpdateTask/${id}`, payload);
-        await axios.patch(`https://backend-todo-1-z9rj.onrender.com/UpdateTask/${id}`, payload);
+        await axios.patch(`http://localhost:8000/UpdateTask/${id}`, payload,
+            { withCredentials: true }
+        );
         navigate(`/Task/${id}`);
         } catch (err) {
         console.error(err);

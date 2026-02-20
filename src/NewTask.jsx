@@ -13,15 +13,10 @@ export function NewTask({ setTasks }) {
 
     const navigate = useNavigate();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    const user_id = user?.user_id;
-
     async function save() {
-        if (!user_id) return;
-
         try {
         const result = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Add",
+            "http://localhost:8000/Add",
             {
             title,
             description,
@@ -29,11 +24,7 @@ export function NewTask({ setTasks }) {
             date,
             completed: false
             },
-            {
-            headers: {
-                "user-id": user_id
-            }
-            }
+            { withCredentials: true }
         );
 
         const savedTask = result.data;
@@ -45,8 +36,9 @@ export function NewTask({ setTasks }) {
             formData.append("image_url", image);
 
             const response = await axios.post(
-            `https://backend-todo-1-z9rj.onrender.com/UploadImage/${savedTask.id}`,
-            formData
+            `http://localhost:8000/UploadImage/${savedTask.id}`,
+            formData,
+            { withCredentials: true }
             );
 
             uploadedImage = response.data.image || [];

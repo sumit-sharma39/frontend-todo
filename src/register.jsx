@@ -20,12 +20,12 @@ export function Register() {
 
         try {
         const r = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Register",
-            payload
+            "http://localhost:8000/Register" , 
+            payload ,
+            { withCredentials: true }
         );
 
         if (r.status === 200 || r.status === 201) {
-            localStorage.setItem("user", JSON.stringify(r.data));
             navigate("/home");
         }
         } catch (error) {
@@ -43,11 +43,12 @@ export function Register() {
         const token = credentialResponse.credential;
 
         const response = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Gregister",
-            { token }
+            "http://localhost:8000/Gregister",
+            { token } ,
+            { withCredentials: true }
         );
 
-        // ✅ backend returns { user_id, email }
+
         localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/home");
 
