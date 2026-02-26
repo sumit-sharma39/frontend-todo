@@ -13,7 +13,7 @@ export function TasksDisplay() {
     useEffect(() => {
         async function getData() {
         try {
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Data`,
+            const res = await axios.get(`http://localhost:8000/Data`,
     { withCredentials: true });
             setTasks(res.data.data);
         } catch (err) {
@@ -27,7 +27,7 @@ export function TasksDisplay() {
     const deleteTask = async (id) => {
         console.log("Deleting task with ID:", id);
         try {
-        await axios.delete(`https://backend-todo-1-z9rj.onrender.com/Delete/${id}`,
+        await axios.delete(`http://localhost:8000/Delete/${id}`,
                 { withCredentials: true } );
 
         setTasks((prev) => prev.filter((task) => task.id !== id));

@@ -14,7 +14,7 @@ export function Login() {
         const token = credentialResponse.credential;
 
         const r = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/GoogleLogin",
+            "http://localhost:8000/GoogleLogin",
             { token },
             { withCredentials: true }
         );
@@ -31,7 +31,7 @@ export function Login() {
 
         try {
         const r = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Login",
+            "http://localhost:8000/Login",
             { email, password },
             { withCredentials: true }
         );
@@ -62,6 +62,7 @@ export function Login() {
             <label className="login-label">Password:</label>
             <input
             type="password"
+            pattern="^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,25}$"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="login-input"
@@ -81,6 +82,8 @@ export function Login() {
             <p className="login-text">
             Don't have an account?
             <Link to="/Register" className="register-link"> Register</Link>
+             <br/>
+           <Link to="/forgot-password"> Forgot password  </Link>
             </p>
         </form>
         </div>

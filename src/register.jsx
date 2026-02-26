@@ -20,7 +20,7 @@ export function Register() {
 
         try {
         const r = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Register" , 
+            "http://localhost:8000/Register" , 
             payload ,
             { withCredentials: true }
         );
@@ -43,7 +43,7 @@ export function Register() {
         const token = credentialResponse.credential;
 
         const response = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Gregister",
+            "http://localhost:8000/Gregister",
             { token } ,
             { withCredentials: true }
         );
@@ -75,6 +75,7 @@ export function Register() {
             <label className="register-label">Password:</label>
             <input
             type="password"
+            pattern="^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,25}$"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="register-input"

@@ -16,7 +16,7 @@ export function NewTask({ setTasks }) {
     async function save() {
         try {
         const result = await axios.post(
-            "https://backend-todo-1-z9rj.onrender.com/Add",
+            "http://localhost:8000/Add",
             {
             title,
             description,
@@ -36,7 +36,7 @@ export function NewTask({ setTasks }) {
             formData.append("image_url", image);
 
             const response = await axios.post(
-            `https://backend-todo-1-z9rj.onrender.com/UploadImage/${savedTask.id}`,
+            `http://localhost:8000/UploadImage/${savedTask.id}`,
             formData,
             { withCredentials: true }
             );

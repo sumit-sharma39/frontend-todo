@@ -1,0 +1,76 @@
+/* Full page center layout */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card */
+.auth-card {
+  background: #ffffff;
+  padding: 40px;
+  width: 380px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.auth-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Input */
+.auth-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Button */
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.auth-button:hover {
+  background-color: #2563eb;
+}
+
+/* Messages */
+.auth-message {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #16a34a;
+}
+
+.auth-error {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #dc2626;
+}
