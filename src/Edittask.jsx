@@ -15,8 +15,8 @@ export function EditTask() {
     useEffect(() => {
         async function fetchTask() {
         try {
-            // const res = await axios.get(`http://localhost:8000/Task/${id}`);
-            const res = await axios.get(`http://localhost:8000/Task/${id}`,
+            // const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`);
+            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`,
             { withCredentials: true }
         );
             const task = res.data;
@@ -66,8 +66,8 @@ export function EditTask() {
         }
 
         try {
-        // await axios.patch(`http://localhost:8000/UpdateTask/${id}`, payload);
-        await axios.patch(`http://localhost:8000/UpdateTask/${id}`, payload,
+        // await axios.patch(`https://backend-todo-1-z9rj.onrender.com/UpdateTask/${id}`, payload);
+        await axios.patch(`https://backend-todo-1-z9rj.onrender.com/UpdateTask/${id}`, payload,
             { withCredentials: true }
         );
         navigate(`/Task/${id}`);

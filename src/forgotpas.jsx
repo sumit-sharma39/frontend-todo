@@ -11,7 +11,7 @@ export function ForgotPassword() {
 
         try {
         await axios.post(
-            "http://localhost:8000/forgot-password",
+            "https://backend-todo-1-z9rj.onrender.com/forgot-password",
             { email }
         );
 
