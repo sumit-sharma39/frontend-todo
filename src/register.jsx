@@ -81,6 +81,13 @@ export function Register() {
             className="register-input"
             required
             />
+            <p className="password-hint">
+            Password must contain:
+            • 1 uppercase letter  
+            • 1 lowercase letter  
+            • 1 special character  
+            • 8–25 characters
+            </p>
 
             <button type="submit" className="register-button">
             Register
