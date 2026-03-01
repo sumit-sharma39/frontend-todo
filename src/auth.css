@@ -1,22 +1,46 @@
+/* ----------------- Theme Variables ----------------- */
+:root {
+  --bg-main: #f2f2f2;
+  --nav-bg: #6f6868;
+  --card-bg: #6f6868;
+  --text-main: #333;
+  --text-light: #ffffff;
+  --btn-bg: #555;
+  --btn-hover: #777;
+  --input-bg: #ffffff;
+}
+
+body.dark {
+  --bg-main: #0f172a;
+  --nav-bg: #1e293b;
+  --card-bg: #1e293b;
+  --text-main: #e2e8f0;
+  --text-light: #f8fafc;
+  --btn-bg: #334155;
+  --btn-hover: #475569;
+  --input-bg: #0f172a;
+}
+
 /* ----------------- Global ----------------- */
 body {
   margin: 0;
-  background-color: #f2f2f2;
+  background-color: var(--bg-main);
   font-family: Arial, sans-serif;
-  color: #333;
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ----------------- Dashboard ----------------- */
 .Dashboard {
   width: 100%;
   height: 64px;
-  background-color: rgb(111, 104, 104);
+  background-color: var(--nav-bg);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Fix spacing between buttons */
+  justify-content: space-between;
   padding: 0 24px;
   box-sizing: border-box;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -26,17 +50,19 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin: 0;
-  color: white;
+  color: var(--text-light);
 }
 
 .dashboard-buttons {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
+/* ----------------- Buttons ----------------- */
 .edit-btn {
-  background-color: #888;
-  color: white;
+  background-color: var(--btn-bg);
+  color: var(--text-light);
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
@@ -47,7 +73,7 @@ body {
 }
 
 .edit-btn:hover {
-  background-color: #aaa;
+  background-color: var(--btn-hover);
   transform: translateY(-1px);
 }
 
@@ -55,19 +81,20 @@ body {
   transform: scale(0.97);
 }
 
-/* ----------------- Forms (Register & Login) ----------------- */
+/* ----------------- Forms ----------------- */
 .register-container,
 .login-container,
 .Div-add {
   width: 100%;
   max-width: 480px;
-  background-color: rgb(111, 104, 104);
-  color: white;
+  background-color: var(--card-bg);
+  color: var(--text-light);
   padding: 28px;
   border-radius: 18px;
   margin: 80px auto;
   box-sizing: border-box;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
 }
 
 .register-form,
@@ -104,8 +131,11 @@ body {
   border: none;
   box-sizing: border-box;
   margin-bottom: 12px;
+  background-color: var(--input-bg);
+  color: var(--text-main);
 }
 
+/* ----------------- Form Buttons ----------------- */
 .register-button,
 .login-button,
 .Div-add button,
@@ -119,25 +149,17 @@ body {
 }
 
 .register-button,
-.login-button {
-  background-color: #555;
-  color: white;
+.login-button,
+.Div-add button {
+  background-color: var(--btn-bg);
+  color: var(--text-light);
   margin-top: 10px;
 }
 
 .register-button:hover,
-.login-button:hover {
-  background-color: #777;
-  transform: translateY(-1px);
-}
-
-.Div-add button {
-  background-color: #555;
-  color: white;
-}
-
+.login-button:hover,
 .Div-add button:hover {
-  background-color: #777;
+  background-color: var(--btn-hover);
   transform: translateY(-1px);
 }
 
@@ -145,15 +167,15 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: grey;
-  color: white;
+  background-color: var(--btn-bg);
+  color: var(--text-light);
 }
 
 .back-btn:hover {
-  background-color: lightgrey;
+  background-color: var(--btn-hover);
 }
 
-/* ----------------- Google Login Section ----------------- */
+/* ----------------- Google Section ----------------- */
 .google-section {
   display: flex;
   flex-direction: column;
@@ -164,27 +186,53 @@ body {
 .or-text {
   margin: 8px 0;
   font-weight: 600;
-  color: #e0e0e0;
 }
 
 .register-link,
 .login-link {
-  color: #fff;
+  color: var(--text-light);
   font-weight: 600;
   text-decoration: underline;
 }
 
 /* ----------------- Responsive ----------------- */
+@media (max-width: 768px) {
+  .Dashboard {
+    padding: 0 16px;
+  }
+
+  .Dashboard h1 {
+    font-size: 18px;
+  }
+
+  .dashboard-buttons {
+    gap: 8px;
+  }
+}
+
 @media (max-width: 500px) {
   .register-container,
   .login-container,
   .Div-add {
     margin: 40px 16px;
-    padding: 24px;
+    padding: 22px;
+    border-radius: 14px;
   }
 
   .edit-btn {
     padding: 6px 12px;
     font-size: 14px;
+  }
+
+  .Dashboard {
+    flex-direction: column;
+    height: auto;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .dashboard-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

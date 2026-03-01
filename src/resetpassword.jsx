@@ -19,7 +19,7 @@ export function ResetPassword() {
 
         try {
         const res = await axios.post(
-            `http://localhost:5000/reset-password/${token}`,
+            `https://backend-todo-1-z9rj.onrender.com/reset-password/${token}`,
             { password }
         );
 
@@ -27,7 +27,7 @@ export function ResetPassword() {
 
         // Redirect to login after 2 seconds
         setTimeout(() => {
-            navigate("/");
+            navigate("/login");
         }, 2000);
 
         } catch (err) {
