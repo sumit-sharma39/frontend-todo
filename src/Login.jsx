@@ -39,9 +39,11 @@ export function Login() {
         localStorage.setItem("user", JSON.stringify({ user_id: r.data.user_id }));
         navigate("/home");
         } catch (err) {
-        if (err.response?.status === 401) alert("Invalid credentials");
-        else if (err.response?.status === 404) navigate("/register");
-        else alert("Login failed");
+            if (err.response?.data?.error) {
+                alert(err.response.data.error);
+            } else {
+                alert("Login failed. Please try again.");
+            }
         }
     };
 
@@ -82,8 +84,8 @@ export function Login() {
             <p className="login-text">
             Don't have an account?
             <Link to="/Register" className="register-link"> Register</Link>
-             <br/>
-           <Link to="/forgot-password"> Forgot password  </Link>
+            <br/> <br/> 
+            <Link to="/forgot-password"> Forgot password  </Link>
             </p>
         </form>
         </div>
