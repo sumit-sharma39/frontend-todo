@@ -27,7 +27,7 @@ export function NewTask({ setTasks }) {
             { withCredentials: true }
         );
 
-        const savedTask = result.data;
+        const savedTask = result.data.data;
 
         let uploadedImage = [];
 
