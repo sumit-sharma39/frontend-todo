@@ -5,8 +5,6 @@ import "./Display.css";
 
 export function TaskDisplay() {
 
-    
-
     const { id } = useParams();
     const [task, setTask] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -14,37 +12,44 @@ export function TaskDisplay() {
 
     useEffect(() => {
         const fetchTask = async () => {
-        try {
-            // const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`);
-            const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}` , 
-            { withCredentials: true });
-            setTask(res.data);
-            console.log("Data received: " , res.data);
-            setLoading(false);
-        } catch (err) {
-            console.error(err);
-            setError("Failed to fetch task details.");
-            setLoading(false);
-        }
+            try {
+                const res = await axios.get(
+                    `https://backend-todo-1-z9rj.onrender.com/Task/${id}`,
+                    { withCredentials: true }
+                );
+
+                // FIX: access the actual task object
+                setTask(res.data.data);
+
+                console.log("Task received:", res.data.data);
+
+                setLoading(false);
+            } catch (err) {
+                console.error(err);
+                setError("Failed to fetch task details.");
+                setLoading(false);
+            }
         };
 
         fetchTask();
-    }, [id ]);
+    }, [id]);
 
-            const markAsCompleted = async () => {
+    const markAsCompleted = async () => {
         try {
-            await axios.put(`https://backend-todo-1-z9rj.onrender.com/Completed/${id}`, null, 
-  { withCredentials: true });
+            await axios.put(
+                `https://backend-todo-1-z9rj.onrender.com/Completed/${id}`,
+                null,
+                { withCredentials: true }
+            );
 
             setTask((prev) =>
-            prev ? { ...prev, completed: true } : prev
+                prev ? { ...prev, completed: true } : prev
             );
         } catch (err) {
             console.error(err);
             alert("Failed to mark task as completed");
         }
-        };
-
+    };
 
     if (loading) return <p>Loading task...</p>;
     if (error) return <p>{error}</p>;
@@ -52,50 +57,51 @@ export function TaskDisplay() {
 
     return (
         <div className="task-detail-container">
-        <Link to="/home">
-            <button className="back-btn">Back</button>
-        </Link>
+            <Link to="/home">
+                <button className="back-btn">Back</button>
+            </Link>
 
-        <h2>{task.title}</h2>
-        <p><strong>Description:</strong> {task.description || "No description"}</p>
+            <h2>{task.title}</h2>
 
-        {task.bullets && task.bullets.length > 0 && (
-        <>
-            <h4>Bullet Points:</h4>
-            <ul>
-            {task.bullets.map((p, index) => (
-                <li key={index}>{p}</li>
-            ))}
-            </ul>
-        </>
-        )}
+            <p>
+                <strong>Description:</strong> {task.description || "No description"}
+            </p>
 
-        {task.deadline && (
-        <p>
-            <strong>Deadline:</strong>{" "}
-            {new Date(task.deadline).toLocaleDateString("en-IN")}
-        </p>
-        )}
-
-        {task.image_url && task.image_url.length > 0 && (
-        <div className="task-images">
-            {task.image_url && (
-                <img src={task.image_url} alt="task" width={400} />
+            {task.bullets && task.bullets.length > 0 && (
+                <>
+                    <h4>Bullet Points:</h4>
+                    <ul>
+                        {task.bullets.map((p, index) => (
+                            <li key={index}>{p}</li>
+                        ))}
+                    </ul>
+                </>
             )}
-        </div>
-        )}
-         {/* task commplition button   */}
-        {!task.completed && (
-        <button className="complete-btn" onClick={markAsCompleted}>
-            Mark as Completed
-        </button>
-        )}
 
-        {task.completed && (
-        <p style={{ color: "green", fontWeight: "bold" }}>
-            ✅ Task Completed
-        </p>
-        )}
+            {task.deadline && (
+                <p>
+                    <strong>Deadline:</strong>{" "}
+                    {new Date(task.deadline).toLocaleDateString("en-IN")}
+                </p>
+            )}
+
+            {task.image_url && (
+                <div className="task-images">
+                    <img src={task.image_url} alt="task" width={400} />
+                </div>
+            )}
+
+            {!task.completed && (
+                <button className="complete-btn" onClick={markAsCompleted}>
+                    Mark as Completed
+                </button>
+            )}
+
+            {task.completed && (
+                <p style={{ color: "green", fontWeight: "bold" }}>
+                    ✅ Task Completed
+                </p>
+            )}
         </div>
     );
 }
