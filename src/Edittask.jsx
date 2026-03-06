@@ -19,7 +19,7 @@ export function EditTask() {
             const res = await axios.get(`https://backend-todo-1-z9rj.onrender.com/Task/${id}`,
             { withCredentials: true }
         );
-            const task = res.data;
+            const task = res.data.data;
 
             setOriginal(task);
             setTitle(task.title || "");
