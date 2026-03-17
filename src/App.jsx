@@ -1,14 +1,14 @@
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import { NewTask } from "./NewTask";
+import { NewTask } from "./pages/NewTask";
 import { useState } from 'react';
-import {TasksDisplay} from "./TasksDisplay"
-import { TaskDisplay } from "./Task-Display";
-import { EditTask } from "./Edittask";
-import { Login } from "./Login"
-import { Register } from "./register";
-import { ForgotPassword } from "./forgotpas";
-import { ResetPassword } from "./resetpassword";
+import {TasksDisplay} from "./pages/TasksDisplay"
+import { TaskDisplay } from "./pages/Task-Display";
+import { EditTask } from "./pages/Edittask";
+import { Login } from "./pages/Login"
+import { Register } from "./pages/register";
+import { ForgotPassword } from "./pages/forgotpas";
+import { ResetPassword } from "./pages/resetpassword";
 
 function App() {
   const [tasks, setTasks] = useState([]);
