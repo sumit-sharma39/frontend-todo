@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Display.css";
-import { Dashboard } from "./dashboard";
+import { Dashboard } from "../components/dashboard";
 
 export function TasksDisplay() {
     const [tasks, setTasks] = useState([]);

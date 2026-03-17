@@ -19,27 +19,3 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
-using namespace std;
-int main() {
-    // Write C++ code here
-    int num=123;
-    int temp=num;
-    int n=0 , s=0 , sum=0;
-    while (num>0){
-        n= num%10;
-        sum= sum+n;
-        num=num/10;
-    }
-    
-    while(temp>0){
-        n=temp%10; 123%10 =3 
-        s=s*10+n; 30+2
-        temp=temp/10;
-    }
-    
-    
-    
-    cout<<s<<endl;
-    cout<<sum;
-    return 0;
-}
